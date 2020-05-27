@@ -39,11 +39,11 @@ def process_data(data):
         if item_revenue > max_revenue["revenue"]:
             item["revenue"] = item_revenue
             max_revenue = item
-        # TODO: also handle max sales
+        #  Also handle max sales
         if item["total_sales"] > max_sales:
             max_sales = item["total_sales"]
             car_md = item["car"]
-        # TODO: also handle most popular car_year
+        #  Also handle most popular car_year
         year = item["car"]["car_year"]
         if year not in car_year.keys():
             car_year[year] = item["total_sales"]
@@ -75,12 +75,12 @@ def main(argv):
     data = load_data("car_sales.json")
     summary = process_data(data)
     print(summary)
-    # TODO: turn this into a PDF report
+    # Turn this into a PDF report
     sum = '\n'.join(summary)
     summ = "<br/>".join(summary)
     reports.generate("/tmp/cars.pdf", title="Sales summary for last month",
                      additional_info=summ, table_data=cars_dict_to_table(data))
-    # TODO: send the PDF report as an email attachment
+    # Send the PDF report as an email attachment
     sender = "automation@example.com"
     receiver = "{}@example.com".format(os.environ.get('USER'))
     subject = "Sales summary for last month"
